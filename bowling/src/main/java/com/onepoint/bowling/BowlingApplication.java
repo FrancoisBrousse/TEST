@@ -7,7 +7,7 @@ public class BowlingApplication {
     static Scanner keyboard = new Scanner(System.in);
     static int total;
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         StartGame();
         StartRoll();
         EndGame();
@@ -18,7 +18,7 @@ public class BowlingApplication {
     }
 
     public static void StartRoll() {
-        int [] roll = new int[10];
+        int[] roll = new int[10];
         int score = 0;
 
         for (int i = 1; i < 11; i++) {
