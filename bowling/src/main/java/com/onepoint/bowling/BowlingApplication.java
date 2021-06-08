@@ -19,7 +19,6 @@ public class BowlingApplication {
 
     public static void StartRoll() {
         String[] tries = new String[2];
-        //int intermediateScore = 0;
         int rollNumber, tryNumber;
         boolean isStrike = false, isStrikeDoneBefore = false, isSpare = false, isSpareDoneBefore = false;
 
@@ -60,7 +59,6 @@ public class BowlingApplication {
                         System.out.println("This is a spare at try " + tryNumber);
                         isSpare = true;
                         score += 10 - Integer.parseInt(tries[j - 1]);
-                        ;
                     }
                 } else if (tries[j].equals("-")) {
                     System.out.println("This is a miss");
