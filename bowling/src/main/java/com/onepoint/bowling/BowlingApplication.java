@@ -103,7 +103,6 @@ public class BowlingApplication {
                         if (i == 9) {
                             System.out.println("This is a spare at your last roll, you have 1 bonus try");
                             score += 10 - Integer.parseInt(tries[j - 1]);
-                            ;
                             System.out.println("Bonus try");
                             tries[j] = keyboard.next();
                             if (tries[j].equals("X")) {
@@ -134,7 +133,6 @@ public class BowlingApplication {
             totalScore += score;
             if (isStrikeDoneBefore) {
                 if (tries[0].equals("X")) {
-                    System.out.println("This is a succession of strike");
                     totalScore += 10;
                 } else {
                     totalScore += Integer.parseInt(tries[0]) + Integer.parseInt(tries[1]);
