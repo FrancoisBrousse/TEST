@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class BowlingApplication {
 
     static Scanner keyboard = new Scanner(System.in);
-    static int totalScore, score;
+    static int totalScore;
 
     public static void main(String[] args) {
         StartGame();
@@ -19,10 +19,9 @@ public class BowlingApplication {
 
     public static void StartRoll() {
         String[] tries = new String[2];
-        int rollNumber, tryNumber;
+        int score = 0, rollNumber, tryNumber;
         boolean isStrike = false, isStrikeDoneBefore = false, isSpare = false, isSpareDoneBefore = false;
-
-        // TODO: Add limit to 11 for this
+        // TODO : Add limit to 10 for this
         for (int i = 0; i < 4; i++) {
             if (isStrike) {
                 isStrikeDoneBefore = true;
@@ -43,27 +42,76 @@ public class BowlingApplication {
                     score += Integer.parseInt(tries[j]);
                 } else if (tries[j].equals("X")) {
                     if (j == 0) {
-                        System.out.println("This is a strike at try " + tryNumber);
-                        isStrike = true;
-                        score += 10;
-                        j = j + 1;
+                        // TODO : Add limit to 9 for this
+                        if (i == 3) {
+                            System.out.println("This is a strike at your last roll, you have 1 bonus roll");
+                            score += 10;
+                            System.out.println("Bonus roll, try " + tryNumber);
+                            tries[j] = keyboard.next();
+                            if (tries[j].equals("X")) {
+                                score += 10;
+                            }
+                            if (tries[j].equals("-")) {
+                                tries[j] = "0";
+                            }
+                            score += Integer.parseInt(tries[0]);
+                            System.out.println("Bonus roll, try " + (j + 2));
+                            tries[j] = keyboard.next();
+                            if (tries[j].equals("X")) {
+                                score += 10;
+                            }
+                            if (tries[j].equals("-")) {
+                                tries[j] = "0";
+                            }
+                            score += Integer.parseInt(tries[0]);
+                            j = j + 1;
+                        } else {
+                            System.out.println("This is a strike at try " + tryNumber);
+                            isStrike = true;
+                            score += 10;
+                            j = j + 1;
+                        }
                     } else {
-                        System.out.println("This is not possible ");
+                        // I used a shortcut for this case because I couldn't manage to use a while loop
+                        // It gives only 1 try and then goes on
+                        System.out.println("This is not possible, please insert another value");
+                        tries[j] = keyboard.next();
+                        score += Integer.parseInt(tries[j]);
                     }
                 } else if (tries[j].equals("/")) {
+                    // I used a shortcut for this case because I couldn't manage to use a while loop
+                    // It gives only 1 try and then goes on
                     if (j == 0) {
                         System.out.println("This is not possible, please insert another value");
                         tries[j] = keyboard.next();
                         score += Integer.parseInt(tries[j]);
                     } else {
-                        System.out.println("This is a spare at try " + tryNumber);
-                        isSpare = true;
-                        score += 10 - Integer.parseInt(tries[j - 1]);
+                        // TODO : Add limit to 9 for this
+                        if (i == 3) {
+                            System.out.println("This is a spare at your last roll, you have 1 bonus try");
+                            score += 10 - Integer.parseInt(tries[j - 1]);
+                            ;
+                            System.out.println("Bonus try");
+                            tries[j] = keyboard.next();
+                            if (tries[j].equals("X")) {
+                                score += 10;
+                            }
+                            if (tries[j].equals("-")) {
+                                tries[j] = "0";
+                            }
+                            score += Integer.parseInt(tries[0]);
+                        } else {
+                            System.out.println("This is a spare at try " + tryNumber);
+                            isSpare = true;
+                            score += 10 - Integer.parseInt(tries[j - 1]);
+                        }
                     }
                 } else if (tries[j].equals("-")) {
                     System.out.println("This is a miss");
                     tries[j] = "0";
                 } else {
+                    // I used a shortcut for this case because I couldn't manage to use a while loop
+                    // It gives only 1 try and then goes on
                     System.out.println("Incorrect value, please insert valid value");
                     tries[j] = keyboard.next();
                     score += Integer.parseInt(tries[j]);
@@ -85,9 +133,8 @@ public class BowlingApplication {
     }
 
     private static boolean isValidValue(String value) {
-        if (value.equals("1") || value.equals("2") || value.equals("3") || value.equals("4") ||
-                value.equals("5") || value.equals("6") || value.equals("7") || value.equals("8") ||
-                value.equals("9")) {
+        if (value.equals("1") || value.equals("2") || value.equals("3") || value.equals("4") || value.equals("5")
+                || value.equals("6") || value.equals("7") || value.equals("8") || value.equals("9")) {
             return true;
         }
         return false;
