@@ -21,7 +21,6 @@ public class BowlingApplication {
         String[] tries = new String[2];
         int score = 0, rollNumber, tryNumber;
         boolean isStrike = false, isStrikeDoneBefore = false, isSpare = false, isSpareDoneBefore = false;
-        // TODO : Add limit to 10 for this
         for (int i = 0; i < 10; i++) {
             if (isStrike) {
                 isStrikeDoneBefore = true;
@@ -42,7 +41,6 @@ public class BowlingApplication {
                     score += Integer.parseInt(tries[j]);
                 } else if (tries[j].equals("X")) {
                     if (j == 0) {
-                        // TODO : Add limit to 9 for this
                         if (i == 9) {
                             System.out.println("This is a strike at your last roll, you have 1 bonus roll");
                             score += 10;
@@ -99,7 +97,6 @@ public class BowlingApplication {
                         tries[j] = keyboard.next();
                         score += Integer.parseInt(tries[j]);
                     } else {
-                        // TODO : Add limit to 9 for this
                         if (i == 9) {
                             System.out.println("This is a spare at your last roll, you have 1 bonus try");
                             score += 10 - Integer.parseInt(tries[j - 1]);
